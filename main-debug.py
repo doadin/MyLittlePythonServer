@@ -1,12 +1,12 @@
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from CGIHTTPServer import CGIHTTPRequestHandler
-from SocketServer import ThreadingMixIn
 from os import curdir, sep
+from SocketServer import ThreadingMixIn
 import cgi
 import os
-import urlparse
-import time
 import threading
+import time
+import urlparse
 
 class Handler(CGIHTTPRequestHandler):
 
