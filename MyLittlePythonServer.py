@@ -10,7 +10,7 @@ import urlparse
 
 class Handler(CGIHTTPRequestHandler):
 
-    CGIHTTPRequestHandler.cgi_directories = [""]    
+    CGIHTTPRequestHandler.cgi_directories = ["/cgi-bin"]   
     def do_GET(self):
         parsed_path = urlparse.urlparse(self.path)
         message_parts = [
