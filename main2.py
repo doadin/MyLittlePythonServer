@@ -9,7 +9,8 @@ import time
 import threading
 
 class Handler(CGIHTTPRequestHandler):
-    
+
+    CGIHTTPRequestHandler.cgi_directories = [""]      
     def do_GET(self):
         parsed_path = urlparse.urlparse(self.path)
         message_parts = [
@@ -139,7 +140,11 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
 
 if __name__ == '__main__':
-    from BaseHTTPServer import HTTPServer
-    server = ThreadedHTTPServer(('localhost', 8181), Handler)
-    print 'Starting server, use <Ctrl-C> to stop'
-    server.serve_forever()
+    try:
+        from BaseHTTPServer import HTTPServer
+        server = ThreadedHTTPServer(('localhost', 8181), Handler)
+        print 'Starting server, use <Ctrl-C> to stop'
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print 'Server Shutting Down By User'
+        server.socket.close()
