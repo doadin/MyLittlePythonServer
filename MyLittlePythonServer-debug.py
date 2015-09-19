@@ -15,6 +15,7 @@ mimetypes.knownfiles
 class Handler(CGIHTTPRequestHandler):
 
     CGIHTTPRequestHandler.cgi_directories = ["/www/cgi-bin"]
+    CGIHTTPRequestHandler.protocol_version = "HTTP/1.1"
     def do_GET(self):
         parsed_path = urlparse.urlparse(self.path)
         message_parts = [
