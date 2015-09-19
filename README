@@ -1,0 +1,5 @@
+This is a pure python webserver implementation using pythons BaseHTTPServer.
+
+Start by python MyLittlePythonServer.py *port number to listen on*
+
+If you dont supply a port it defaults to 8080.
