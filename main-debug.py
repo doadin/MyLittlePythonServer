@@ -3,10 +3,14 @@ from CGIHTTPServer import CGIHTTPRequestHandler
 from os import curdir, sep
 from SocketServer import ThreadingMixIn
 import cgi
+import mimetypes
 import os
 import threading
 import time
 import urlparse
+
+mimetypes.init()
+mimetypes.knownfiles
 
 class Handler(CGIHTTPRequestHandler):
 
@@ -85,6 +89,8 @@ class Handler(CGIHTTPRequestHandler):
             if self.path.endswith(".torrent"):
                 mimetype='application/x-bittorrent'
                 sendReply = True
+            fileend = os.path.splitext(self.path)[1]
+            print(fileend)
 
             if sendReply == True:
                 #Open the static file requested and send it
