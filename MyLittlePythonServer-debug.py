@@ -14,7 +14,7 @@ mimetypes.knownfiles
 
 class Handler(CGIHTTPRequestHandler):
 
-    CGIHTTPRequestHandler.cgi_directories = ["/cgi-bin"]      
+    CGIHTTPRequestHandler.cgi_directories = ["/www/cgi-bin"]
     def do_GET(self):
         parsed_path = urlparse.urlparse(self.path)
         message_parts = [
@@ -94,7 +94,7 @@ class Handler(CGIHTTPRequestHandler):
 
             if sendReply == True:
                 #Open the static file requested and send it
-                f = open(curdir + sep + self.path) 
+                f = open(curdir + sep + '/www' + self.path)
                 self.send_response(200)
                 self.send_header('Content-type',mimetype)
                 self.send_header('Last-Modified', self.date_time_string(time.time()))
@@ -110,11 +110,11 @@ class Handler(CGIHTTPRequestHandler):
         except IOError:
             self.send_error(404,'File Not Found: %s' % self.path)
         return
-        
+
     def do_POST(self):
         # Parse the form data posted
         form = cgi.FieldStorage(
-            fp=self.rfile, 
+            fp=self.rfile,
             headers=self.headers,
             environ={'REQUEST_METHOD':'POST',
                      'CONTENT_TYPE':self.headers['Content-Type'],
