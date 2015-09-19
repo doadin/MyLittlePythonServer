@@ -79,6 +79,12 @@ class Handler(CGIHTTPRequestHandler):
             if self.path.endswith(".tar.gz"):
                 mimetype='application/x-tar-gz'
                 sendReply = True
+            if self.path.endswith(".7z"):
+                mimetype='application/x-7z-compressed'
+                sendReply = True
+            if self.path.endswith(".torrent"):
+                mimetype='application/x-bittorrent'
+                sendReply = True
 
             if sendReply == True:
                 #Open the static file requested and send it
