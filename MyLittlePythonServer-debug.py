@@ -5,12 +5,18 @@ from SocketServer import ThreadingMixIn
 import cgi
 import mimetypes
 import os
+import sys
 import threading
 import time
 import urlparse
 
 mimetypes.init()
 mimetypes.knownfiles
+
+if sys.argv[1:]:
+    port = int(sys.argv[1])
+else:
+    port = 8080
 
 class Handler(CGIHTTPRequestHandler):
 
@@ -155,7 +161,7 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 if __name__ == '__main__':
     try:
         from BaseHTTPServer import HTTPServer
-        server = ThreadedHTTPServer(('localhost', 8181), Handler)
+        server = ThreadedHTTPServer(('localhost', port), Handler)
         print 'Starting server, use <Ctrl-C> to stop'
         server.serve_forever()
     except KeyboardInterrupt:
