@@ -1,16 +1,8 @@
-try:
-    from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-    from CGIHTTPServer import CGIHTTPRequestHandler
-except:
-    from http.server import HTTPServer, BaseHTTPRequestHandler, CGIHTTPRequestHandler
-    from CGIHTTPServer import CGIHTTPRequestHandler
+from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from CGIHTTPServer import CGIHTTPRequestHandler
 from os import curdir, sep
-try:
-    from SocketServer import ThreadingMixIn
-except:
-    from socketserver import ThreadingMixIn
+from SocketServer import ThreadingMixIn
 import cgi
-import mimetypes
 import os
 import sys
 import threading
