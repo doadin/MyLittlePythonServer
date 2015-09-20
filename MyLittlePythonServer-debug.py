@@ -5,6 +5,7 @@ from SocketServer import ThreadingMixIn
 import cgi
 import mimetypes
 import os
+import socket
 import sys
 import threading
 import time
@@ -14,7 +15,12 @@ mimetypes.init()
 mimetypes.knownfiles
 
 if sys.argv[1:]:
-    port = int(sys.argv[1])
+    bind = sys.argv[1]
+else:
+    bind = '127.0.0.1'
+
+if sys.argv[2:]:
+    port = int(sys.argv[2])
 else:
     port = 8080
 
@@ -157,11 +163,17 @@ class Handler(CGIHTTPRequestHandler):
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
+    ipv6 = socket.AF_INET6
+    ipv4 = socket.AF_INET
+    if sys.argv[3:]:
+        address_family = sys.argv[3]
+    else:
+        address_family = ipv4
 
 if __name__ == '__main__':
     try:
         from BaseHTTPServer import HTTPServer
-        server = ThreadedHTTPServer(('localhost', port), Handler)
+        server = ThreadedHTTPServer((bind, port), Handler)
         print 'Starting server, use <Ctrl-C> to stop'
         server.serve_forever()
     except KeyboardInterrupt:
