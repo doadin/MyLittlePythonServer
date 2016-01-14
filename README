@@ -1,12 +1,17 @@
 This is a pure python webserver implementation using pythons BaseHTTPServer.
 
-Start by python MyLittlePythonServer.py *ip to listen on* *port number* *ipv4 or ipv6*
+Start by python MyLittlePythonServer.py (--bind, --port, --protocol)
 
 Sample:
 for ipv4
-python MyLittlePythonServer.py '127.0.0.1' 80
+python MyLittlePythonServer.py
 
-for ipv6 (currently NOT working)
-python MyLittlePythonServer.py '::' 80 ipv6
+for ipv6 (not tested)
+python MyLittlePythonServer.py --protocol ipv6
 
-If you dont supply a port it defaults to 8080.
+all sample
+python MyLittlePythonServer.py --bind 10.0.0.1 --port 8118 --protocol ipv4
+
+If you dont supply a ip it defaults to 127.0.0.1.
+If you dont supply a port it defaults to 80.
+If you dont supply a protocol it defaults to ipv4.

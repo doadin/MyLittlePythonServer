@@ -2,6 +2,7 @@ from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from CGIHTTPServer import CGIHTTPRequestHandler
 from os import curdir, sep
 from SocketServer import ThreadingMixIn
+import argparse
 import cgi
 import mimetypes
 import os
@@ -14,15 +15,19 @@ import urlparse
 mimetypes.init()
 mimetypes.knownfiles
 
-if sys.argv[1:]:
-    bind = sys.argv[1]
+parser = argparse.ArgumentParser()
+parser.add_argument("--bind", help="ip to bind to")
+parser.add_argument("--port", help="port to bind on")
+parser.add_argument("--protocol", help="ipv4 or ipv6")
+args = parser.parse_args()
+if args.bind:
+    bind = args.bind
 else:
-    bind = '127.0.0.1'
-
-if sys.argv[2:]:
-    port = int(sys.argv[2])
+    bind = 127.0.0.1
+if args.port:
+    port = args.port
 else:
-    port = 8080
+    port = 80
 
 class Handler(CGIHTTPRequestHandler):
 
@@ -165,8 +170,9 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
     ipv6 = socket.AF_INET6
     ipv4 = socket.AF_INET
-    if sys.argv[3:]:
-        address_family = sys.argv[3]
+
+    if args.protocol:
+        address_family = args.protocol
     else:
         address_family = ipv4
 
