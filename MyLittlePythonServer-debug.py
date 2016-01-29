@@ -175,7 +175,7 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     if args.protocol:
         address_family = args.protocol
     else:
-        address_family = ipv4
+        address_family = socket.AF_INET
 
 if __name__ == '__main__':
     try:
