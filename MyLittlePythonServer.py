@@ -11,6 +11,9 @@ import threading
 import time
 import urlparse
 
+ipv6 = socket.AF_INET6
+ipv4 = socket.AF_INET
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--bind", help="ip to bind to")
 parser.add_argument("--port", help="port to bind on")
@@ -145,8 +148,6 @@ class Handler(CGIHTTPRequestHandler):
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
-    ipv6 = socket.AF_INET6
-    ipv4 = socket.AF_INET
 
     if args.protocol:
         address_family = args.protocol
