@@ -22,11 +22,11 @@ args = parser.parse_args()
 if args.bind:
     bind = args.bind
 else:
-	bind = '127.0.0.1'
+    bind = '127.0.0.1'
 if args.port:
     port = args.port
 else:
-	port = 80
+    port = 80
 
 class Handler(CGIHTTPRequestHandler):
 
