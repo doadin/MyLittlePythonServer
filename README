@@ -15,3 +15,5 @@ python MyLittlePythonServer.py --bind 10.0.0.1 --port 8118 --protocol ipv4
 If you dont supply a ip it defaults to 127.0.0.1.
 If you dont supply a port it defaults to 80.
 If you dont supply a protocol it defaults to ipv4.
+
+NOTE: Python script made in part by findings on the net and pieced together with some edits.
