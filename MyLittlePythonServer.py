@@ -1,4 +1,4 @@
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from BaseHTTPServer import HTTPServer
 from CGIHTTPServer import CGIHTTPRequestHandler
 from os import curdir, sep
 from SocketServer import ThreadingMixIn
