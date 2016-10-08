@@ -6,7 +6,6 @@ import argparse
 import cgi
 import os
 import socket
-import sys
 import threading
 import time
 import urlparse
